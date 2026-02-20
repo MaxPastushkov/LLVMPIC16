@@ -118,9 +118,9 @@ StringRef llvm::object::getELFRelocationTypeName(uint32_t Machine,
       break;
     }
     break;
-  case ELF::EM_RISCW:
+  case ELF::EM_PIC16:
     switch (Type) {
-#include "llvm/BinaryFormat/ELFRelocs/RISCW.def"
+#include "llvm/BinaryFormat/ELFRelocs/PIC16.def"
     default:
       break;
     }

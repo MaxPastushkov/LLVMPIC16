@@ -641,7 +641,7 @@ std::string Triple::computeDataLayout(StringRef ABIName) const {
     // LLVM data layout.
     return "";
 
-  case Triple::riscw:
+  case Triple::pic16:
     return "e-m:e-p:32:32-i64:64-n32-S128";
 
   case Triple::UnknownArch:

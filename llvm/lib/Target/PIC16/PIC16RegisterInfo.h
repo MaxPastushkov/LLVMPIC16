@@ -1,0 +1,57 @@
+//===-- PIC16RegisterInfo.h - PIC16 Register Information Impl -----*- C++ -*-===//
+//
+//                     The LLVM Compiler Infrastructure
+//
+// This file is distributed under the University of Illinois Open Source
+// License. See LICENSE.TXT for details.
+//
+//===----------------------------------------------------------------------===//
+//
+// This file contains the PIC16 implementation of the TargetRegisterInfo class.
+//
+//===----------------------------------------------------------------------===//
+
+#ifndef LLVM_LIB_TARGET_PIC16_PIC16REGISTERINFO_H
+#define LLVM_LIB_TARGET_PIC16_PIC16REGISTERINFO_H
+
+#include "llvm/CodeGen/TargetRegisterInfo.h"
+
+#define GET_REGINFO_HEADER
+#include "PIC16GenRegisterInfo.inc"
+
+namespace llvm {
+class PIC16Subtarget;
+
+class PIC16RegisterInfo : public PIC16GenRegisterInfo {
+protected:
+  const PIC16Subtarget &Subtarget;
+
+public:
+  PIC16RegisterInfo(const PIC16Subtarget &Subtarget);
+
+  const MCPhysReg *getCalleeSavedRegs(const MachineFunction *MF) const override;
+
+  const uint32_t *getCallPreservedMask(const MachineFunction &MF,
+                                       CallingConv::ID) const override;
+
+  BitVector getReservedRegs(const MachineFunction &MF) const override;
+
+  bool requiresRegisterScavenging(const MachineFunction &MF) const override;
+  bool requiresFrameIndexScavenging(const MachineFunction &MF) const override;
+  bool requiresFrameIndexReplacementScavenging(
+                                    const MachineFunction &MF) const override;
+
+  bool trackLivenessAfterRegAlloc(const MachineFunction &MF) const override;
+
+  bool eliminateFrameIndex(MachineBasicBlock::iterator II, int SPAdj,
+                           unsigned FIOperandNum,
+                           RegScavenger *RS = nullptr) const override;
+
+  Register getFrameRegister(const MachineFunction &MF) const override;
+
+  const TargetRegisterClass *intRegClass(unsigned Size) const;
+};
+
+} // end namespace llvm
+
+#endif // end LLVM_LIB_TARGET_PIC16_PIC16REGISTERINFO_H

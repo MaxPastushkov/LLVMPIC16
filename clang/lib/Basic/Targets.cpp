@@ -31,7 +31,7 @@
 #include "Targets/OSTargets.h"
 #include "Targets/PPC.h"
 #include "Targets/RISCV.h"
-#include "Targets/RISCW.h"
+#include "Targets/PIC16.h"
 #include "Targets/SPIR.h"
 #include "Targets/Sparc.h"
 #include "Targets/SystemZ.h"
@@ -444,8 +444,8 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
       return std::make_unique<RISCV32TargetInfo>(Triple, Opts);
     }
 
-  case llvm::Triple::riscw:
-    return std::make_unique<RISCWTargetInfo>(Triple, Opts);
+  case llvm::Triple::pic16:
+    return std::make_unique<PIC16TargetInfo>(Triple, Opts);
     
   case llvm::Triple::riscv64:
   case llvm::Triple::riscv64be:

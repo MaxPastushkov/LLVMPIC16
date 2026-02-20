@@ -48,7 +48,8 @@ participants to all modes of communication within the project.
 The commands currently used to build the project are:
 ```
 mkdir build && cd build
-cmake -G "Ninja" -DLLVM_TARGETS_TO_BUILD= -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCW" -DCMAKE_BUILD_TYPE="Debug" ../llvm
+cmake -G "Ninja" -DLLVM_TARGETS_TO_BUILD= -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="PIC16" -DCMAKE_BUILD_TYPE="Debug" ../llvm
 ninja -j`nproc` llc # Or omit 'llc' to build everything
 ```
 
+As of now, the PIC16 project is literally a renamed version of RISCW, copied (and patched) from [here](https://sourcecodeartisan.com/2020/09/13/llvm-backend-0.html).
