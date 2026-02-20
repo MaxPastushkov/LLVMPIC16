@@ -42,3 +42,13 @@ chat](https://discord.gg/xS7Z362),
 
 The LLVM project has adopted a [code of conduct](https://llvm.org/docs/CodeOfConduct.html) for
 participants to all modes of communication within the project.
+
+## PIC16
+
+The commands currently used to build the project are:
+```
+mkdir build && cd build
+cmake -G "Ninja" -DLLVM_TARGETS_TO_BUILD= -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCW" -DCMAKE_BUILD_TYPE="Debug" ../llvm
+ninja -j`nproc` llc # Or omit 'llc' to build everything
+```
+
